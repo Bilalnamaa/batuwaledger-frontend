@@ -1,17 +1,39 @@
 :root {
-  --color-primary: #0f7b5f;
-  --color-primary-dark: #0b5c48;
-  --color-primary-soft: #e6f4ef;
-  --color-accent: #f2b84b;
-  --color-bg: #fafaf7;
+  /* BatuwaLedger design system (SDD Appendix A) */
+  --emerald-900: #06382c;
+  --emerald-800: #0a4a3a;
+  --emerald-700: #0e6b52;
+  --emerald-600: #12855f;
+  --emerald-500: #19a774;
+  --mint-300: #8eddb9;
+  --mint-100: #ddf3e9;
+  --mint-50: #eef8f3;
+  --lime: #c8f169;
+
+  --ink: #0f241d;
+  --ink-2: #4b5f58;
+  --ink-3: #8a9c95;
+  --line: #e2ebe7;
+  --canvas: #f3f7f5;
+
+  --warning: #b7720f;
+  --danger: #c93c3c;
+
+  /* Existing names kept so current/future components keep working */
+  --color-primary: var(--emerald-600);
+  --color-primary-dark: var(--emerald-700);
+  --color-primary-soft: var(--mint-50);
+  --color-accent: var(--lime);
+  --color-bg: var(--canvas);
   --color-surface: #ffffff;
-  --color-text: #1b2b26;
-  --color-muted: #5f6f68;
-  --color-border: #e3e8e5;
+  --color-text: var(--ink);
+  --color-muted: var(--ink-2);
+  --color-border: var(--line);
 
   --radius: 12px;
-  --shadow: 0 4px 16px rgba(15, 123, 95, 0.08);
-  --font: "Inter", system-ui, sans-serif;
+  --radius-lg: 16px;
+  --shadow: 0 1px 2px rgba(6, 56, 44, 0.04), 0 8px 24px rgba(6, 56, 44, 0.06);
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 * {
@@ -21,14 +43,17 @@
 body {
   margin: 0;
   font-family: var(--font);
+  font-weight: 500;
   background: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3 {
   line-height: 1.2;
   margin: 0 0 12px;
+  font-weight: 700;
 }
 
 p {
@@ -45,6 +70,11 @@ section {
   padding: 64px 0;
 }
 
+:focus-visible {
+  outline: 2px solid var(--emerald-600);
+  outline-offset: 2px;
+}
+
 /* Shared building blocks used across the whole app */
 .container {
   max-width: 1100px;
@@ -53,13 +83,18 @@ section {
 }
 
 .btn {
-  display: inline-block;
-  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 22px;
   border-radius: var(--radius);
-  border: 2px solid transparent;
+  border: 1.5px solid transparent;
+  font: inherit;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .btn-primary {
@@ -68,6 +103,10 @@ section {
 }
 .btn-primary:hover {
   background: var(--color-primary-dark);
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn-outline {
@@ -78,10 +117,47 @@ section {
   background: var(--color-primary-soft);
 }
 
+.btn-lime {
+  background: var(--lime);
+  color: var(--emerald-900);
+}
+.btn-lime:hover {
+  background: #d6f78a;
+}
+
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow);
+}
+
+/* Shared logo (Navbar + auth pages) */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.logo__mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: var(--lime);
+  color: var(--emerald-900);
+}
+.logo b {
+  font-weight: 700;
+  color: var(--emerald-600);
+}
+.logo--on-dark {
+  color: #fff;
+}
+.logo--on-dark b {
+  color: var(--mint-300);
 }

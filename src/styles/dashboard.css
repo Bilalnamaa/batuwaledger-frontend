@@ -1,0 +1,159 @@
+.dash {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 366px;
+  grid-template-areas:
+    "balance health"
+    "week    coming"
+    "recent  spending";
+  gap: 20px;
+}
+
+/* Balance card */
+.balance {
+  position: relative;
+  overflow: hidden;
+  padding: 22px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--emerald-900);
+  color: #fff;
+}
+.balance::before {
+  content: "";
+  position: absolute;
+  top: -150px;
+  right: -90px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: var(--emerald-800);
+}
+.balance::after {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: 70px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 1px solid rgba(142, 221, 185, 0.3);
+}
+.balance > * { position: relative; z-index: 1; }
+.balance__top { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--mint-300); }
+.balance__add { display: inline-flex; align-items: center; gap: 4px; min-height: 28px; font-weight: 600; color: var(--lime); }
+.balance__row { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin: 6px 0 20px; }
+.balance__amount { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; }
+.balance__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: 99px;
+  background: var(--emerald-800);
+  color: var(--lime);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.balance__wallets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.balance__wallets div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.07);
+}
+.balance__wallets span { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--mint-300); }
+.balance__wallets strong { font-size: 1rem; }
+
+/* Week summary */
+.weekhead { display: flex; align-items: center; gap: 10px; }
+.weekhead small { font-size: 0.75rem; font-weight: 500; color: var(--ink-3); }
+.verified { display: inline-flex; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 600; color: var(--emerald-600); }
+.weektext { font-size: 1.05rem; line-height: 1.6; color: var(--ink); }
+.weektext b { font-weight: 700; }
+.weektext .em { color: var(--emerald-600); }
+
+/* Lists */
+.list { margin: 0; padding: 0; list-style: none; }
+.list__row { display: flex; align-items: center; gap: 14px; padding: 11px 0; }
+.list--compact .list__row { gap: 10px; padding: 7px 0; }
+.list--compact .list__main span { white-space: nowrap; font-size: 0.68rem; }
+.list__main { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.35; }
+.list__main strong { font-size: 0.9rem; }
+.list__main span { font-size: 0.72rem; color: var(--ink-3); }
+.list__date { width: 110px; font-size: 0.78rem; color: var(--ink-3); }
+.amount { min-width: 96px; text-align: right; font-size: 0.9rem; white-space: nowrap; }
+.amount--in { color: var(--emerald-600); }
+.list--compact .amount { min-width: 0; font-size: 0.85rem; }
+
+/* Health score */
+.badge { padding: 2px 10px; border-radius: 99px; background: var(--mint-100); color: var(--emerald-700); font-size: 0.7rem; font-weight: 600; }
+.health { display: flex; align-items: center; gap: 18px; }
+.ring { position: relative; flex: none; width: 100px; height: 100px; }
+.ring__label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.1; }
+.ring__label strong { font-size: 1.9rem; }
+.ring__label span { font-size: 0.68rem; color: var(--ink-3); }
+.health__parts { flex: 1; display: grid; gap: 10px; }
+.health__row { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.75rem; color: var(--ink-2); }
+.health__row strong { color: var(--ink); }
+.bar { height: 6px; border-radius: 99px; background: var(--mint-100); }
+.bar__fill { display: block; height: 100%; border-radius: 99px; }
+.bar__fill--primary { background: var(--emerald-600); }
+.bar__fill--mint { background: var(--mint-300); }
+.health__foot {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 0.78rem;
+  color: var(--ink-2);
+}
+.health__foot span { display: flex; gap: 8px; line-height: 1.4; }
+.health__foot svg { flex: none; margin-top: 2px; color: var(--emerald-600); }
+.health__foot .link-sm { white-space: nowrap; }
+
+/* Spending */
+.toggle { display: flex; padding: 3px; border-radius: 10px; background: var(--canvas); }
+.toggle button {
+  min-height: 30px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.toggle button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(6, 56, 44, 0.1); }
+.spend { display: flex; align-items: center; gap: 22px; }
+.donut { position: relative; flex: none; width: 150px; height: 150px; }
+.donut__label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.donut__label span { font-size: 0.7rem; color: var(--ink-3); }
+.donut__label strong { font-size: 1rem; }
+.legend { flex: 1; margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.legend li { display: flex; align-items: center; gap: 10px; }
+.legend i { flex: none; width: 10px; height: 10px; border-radius: 3px; }
+.legend div { flex: 1; display: flex; flex-direction: column; line-height: 1.25; }
+.legend span { font-size: 0.75rem; color: var(--ink-2); }
+.legend strong { font-size: 0.85rem; }
+.legend em { font-style: normal; font-size: 0.78rem; color: var(--ink-3); }
+
+@media (max-width: 1100px) {
+  .dash {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "balance" "week" "health" "coming" "recent" "spending";
+  }
+}
+@media (max-width: 640px) {
+  .balance__wallets { grid-template-columns: 1fr 1fr; }
+  .balance__amount { font-size: 2rem; }
+  .list__date { display: none; }
+  .health, .spend { flex-direction: column; align-items: stretch; }
+  .ring, .donut { align-self: center; }
+}
